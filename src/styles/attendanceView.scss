@@ -1,0 +1,617 @@
+* {
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  &:before,
+  &:after {
+    box-sizing: border-box;
+  }
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+.clear {
+  display: block;
+  clear: both;
+  font-size: 1px;
+  width: 1px;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.ov-hi {
+  overflow: hidden;
+}
+
+.w100 {
+  width: 100%;
+}
+
+// 主模块
+.attendance-view {
+  position: relative;
+  background: no-repeat center top url(~@/assets/attendanceView/bg.jpg);
+  background-size: cover;
+  height: 100%;
+  /* 头部模块 S */
+  .head {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: no-repeat left top url(~@/assets/attendanceView/head_bg.png);
+    background-size: auto 100%;
+    width: 100%;
+    height: 6.09375vw;
+    .logo {
+      display: inline-block;
+      min-width: 27.4vw;
+      height: 100%;
+      padding: 1.5625vw 0 0 2.6042vw;
+      vertical-align: top;
+      font-size: 2.5vw;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+  /* 头部模块 S */
+  /* 时间展示 S */
+  .countdown {
+    position: absolute;
+    top: 7.5vw;
+    left: 1.042vw;
+    background: no-repeat url(~@/assets/attendanceView/countdown_bg.png);
+    background-size: 100% 100%;
+    width: 302px;
+    height: 193px;
+    padding: 44px 0 0 0;
+    text-align: center;
+    transform-origin: top left;
+    p.t1 {
+      font-weight: bold;
+      font-size: 56px;
+      color: #fffa54;
+    }
+    p.t2 {
+      line-height: 32px;
+      font-size: 28px;
+      color: #68a1c5;
+    }
+  }
+  /* 时间展示 E */
+  /* 左侧模块 S */
+  .left-box {
+    position: absolute;
+    top: 19.84375vw;
+    left: 1.042vw;
+    bottom: 1.40625vw;
+    width: 18.59375vw;
+    overflow: hidden;
+    .title {
+      background: no-repeat left top url(~@/assets/attendanceView/left_title_bg.png);
+      background-size: auto 100%;
+      width: 358px;
+      height: 51px;
+      line-height: 43px;
+      padding: 8px 144px 0 18px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #b8e0f9;
+      transform-origin: top left;
+      span {
+        float: right;
+        font-size: 18px;
+        color: #fffa54;
+      }
+    }
+    .box {
+      position: absolute;
+      top: 3.2292vw;
+      left: 0;
+      bottom: 0.0521vw;
+      width: 100%;
+      padding: 0 0 0.9375vw 0.67708vw;
+      border-left: 0.1042vw solid #4886ad;
+      &:before {
+        position: absolute;
+        left: -0.1042vw;
+        bottom: 0;
+        background: #4886ad;
+        width: 50%;
+        height: 0.1042vw;
+        content: "";
+      }
+      &:after {
+        position: absolute;
+        left: 48%;
+        bottom: -0.0521vw;
+        background: #fff;
+        width: 8%;
+        height: 0.2084vw;
+        content: "";
+      }
+    }
+    .list {
+      width: 15vw;
+      height: 100%;
+      background: rgba(184, 227, 255, 0.2);
+      overflow: hidden;
+    }
+    .list-box {
+      width: 288px;
+      transform-origin: top left;
+    }
+    .item {
+      margin: 0 8px;
+      padding: 10px 0 10px 12px;
+      overflow: hidden;
+      border-bottom: 1px solid #485d77;
+      transition: transform 0.6s, opacity 0.6s;
+      will-change: transform, opacity;
+      &.i1 {
+        em {
+          background: #eeb763 !important;
+          color: #2b1e08;
+        }
+        .pic {
+          border-color: #eeb763;
+        }
+        .name {
+          color: #fffa54;
+        }
+        .time {
+          color: #68a1c5;
+        }
+      }
+      &.i2 {
+        em {
+          background: #ff5454 !important;
+          color: #fff;
+        }
+        .pic {
+          border-color: #f00;
+        }
+        .name {
+          color: #ff5454;
+        }
+        .time {
+          color: #bb0a4b;
+        }
+      }
+      &.left-list-enter {
+        opacity: 0;
+        transform: translateY(-83px);
+      }
+      &.left-list-leave-to {
+        opacity: 0;
+      }
+      &.left-list-leave-active {
+        position: absolute;
+      }
+      &.sel {
+        overflow: visible;
+        .bg {
+          position: absolute;
+          top: 0;
+          right: -8px;
+          left: -8px;
+          height: 83px;
+          display: block;
+          background: url(~@/assets/attendanceView/item_bg1.png);
+          z-index: -1;
+        }
+        .time {
+          color: #fff;
+        }
+        &.i1 {
+          .bg {
+            background: url(~@/assets/attendanceView/item_bg2.png);
+          }
+        }
+        &.i2 {
+          .bg {
+            background: url(~@/assets/attendanceView/item_bg3.png);
+          }
+        }
+      }
+      .bg {
+        display: none;
+      }
+      .pic {
+        float: left;
+        width: 62px;
+        height: 62px;
+        overflow: hidden;
+        margin-right: 16px;
+        border: 2px #5aad73 solid;
+        border-radius: 100%;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .name {
+        line-height: 32px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 22px;
+        color: #fff;
+        em {
+          display: inline-block;
+          background: #5aad73;
+          min-width: 38px;
+          line-height: 18px;
+          margin: 7px 6px 0 0;
+          padding: 0 5px;
+          border-radius: 999px;
+          vertical-align: top;
+          text-align: center;
+          font-style: normal;
+          font-size: 14px;
+        }
+      }
+      .time {
+        line-height: 160%;
+        font-weight: bold;
+        font-size: 16px;
+        color: #68a1c5;
+      }
+    }
+  }
+  /* 左侧模块 E */
+  /* 主模块 S */
+  .main-box {
+    position: absolute;
+    top: 5.9375vw;
+    right: 19.63575vw;
+    bottom: 5.9375vw;
+    left: 19.63575vw;
+    display: flex;
+    flex-direction: column;
+    &:before {
+      background: repeat-y top left url(~@/assets/attendanceView/main_top.png);
+      background-size: 100% auto;
+      height: 2.03125vw;
+      content: "";
+    }
+    &:after {
+      background: repeat-y top left url(~@/assets/attendanceView/main_bottom.png);
+      background-size: 100% auto;
+      height: 1.25vw;
+      content: "";
+    }
+    .title {
+      position: absolute;
+      top: 0.5vw;
+      left: 1.4vw;
+      font-size: 1.25vw;
+      color: #a1003b;
+    }
+    .box {
+      flex: 1;
+      background: repeat-y top left url(~@/assets/attendanceView/main_bg.png);
+      background-size: 100% auto;
+      overflow: hidden;
+    }
+    .zoom {
+      width: 1163px;
+      overflow: hidden;
+      padding: 36px 0 0 28px;
+      transform-origin: top left;
+    }
+    .column {
+      width: 354px;
+      float: left;
+      margin-right: 20px;
+    }
+    .item {
+      position: relative;
+      background: no-repeat url(~@/assets/attendanceView/main_item_bg1.png);
+      background-size: 100% 100%;
+      width: 354px;
+      height: 167px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      padding: 28px 0 0 20px;
+      transition: transform .6s, opacity .6s;
+      will-change: transform, opacity;
+      transform-origin: top center;
+      &.elastic {
+        transform: translate(0, 0) !important;
+        transition: transform 0s, opacity 0s !important;
+        animation: elastic 1.2s;
+      }
+      &.main-list-enter {
+        transform: translate(-500px, -191px);
+      }
+      &.main-list-leave-to {
+        position: absolute;
+        display: none;
+      }
+      &.main-list-appear-active {
+        position: absolute;
+      }
+      &.sel {
+        background: no-repeat url(~@/assets/attendanceView/main_item_bg1_on.png);
+      }
+      &.i1 {
+        background-image: url(~@/assets/attendanceView/main_item_bg2.png);
+        &.sel {
+          background-image: url(~@/assets/attendanceView/main_item_bg2_on.png);
+        }
+        em {
+          background: #5aad73;
+          color: #fff;
+        }
+        .pic {
+          border-color: #54ffa1;
+        }
+        .name {
+          color: #d2ffa7;
+        }
+        .time {
+          color: #d8fedf;
+        }
+        .status {
+          color: #99cc83;
+        }
+      }
+      &.i2 {
+        background-image: url(~@/assets/attendanceView/main_item_bg3.png);
+        &.sel {
+          background-image: url(~@/assets/attendanceView/main_item_bg3_on.png);
+        }
+        em {
+          background: #ff5454;
+          color: #fff;
+        }
+        .pic {
+          border-color: #d32271;
+        }
+        .name {
+          color: #fff;
+        }
+        .time {
+          color: #fed8d8;
+        }
+        .status {
+          color: #fffa54;
+        }
+      }
+      em {
+        position: absolute;
+        top: 28px;
+        right: 16px;
+        background: #54d0ff;
+        min-width: 38px;
+        line-height: 18px;
+        padding: 0 6px;
+        border-radius: 99px;
+        text-align: center;
+        font-size: 12px;
+        font-style: normal;
+      }
+      .pic {
+        float: left;
+        width: 106px;
+        height: 106px;
+        margin-right: 18px;
+        border: 3px solid #54d0ff;
+        border-radius: 4px;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      ul {
+        margin-left: 126px;
+        .name {
+          width: 140px;
+          line-height: 42px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 28px;
+          color: #fff;
+        }
+        .time {
+          margin: 10px 0 6px;
+          font-size: 18px;
+          color: #d8e3fe;
+        }
+        .status {
+          font-size: 16px;
+          color: #3b95cd;
+        }
+      }
+    }
+  }
+  /* 主模块 E */
+  /* 右侧考勤 S */
+  .right-box {
+    position: absolute;
+    top: 3.90625vw;
+    right: 2.5vw;
+    width: 17.5vw;
+    bottom: 1.40625vw;
+    .title {
+      float: right;
+      background: no-repeat top left url(~@/assets/attendanceView/right_title_bg.png);
+      width: 335px;
+      height: 41px;
+      line-height: 41px;
+      padding: 0 16px 0 118px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #b8e0f9;
+      transform-origin: top right;
+      span {
+        float: right;
+        font-size: 18px;
+        color: #b8e0f9;
+      }
+      label {
+        color: #fffa54;
+      }
+    }
+    .box {
+      position: absolute;
+      top: 3.2292vw;
+      left: 0;
+      bottom: 0.0521vw;
+      width: 100%;
+      padding: 0 0.67708vw 0.9375vw 0;
+      border-right: 0.1042vw solid #4886ad;
+      &:before {
+        position: absolute;
+        right: -0.1042vw;
+        bottom: 0;
+        background: #4886ad;
+        width: 76%;
+        height: 0.1042vw;
+        content: "";
+      }
+      &:after {
+        position: absolute;
+        right: 74%;
+        bottom: -0.0521vw;
+        background: #fff;
+        width: 8%;
+        height: 0.2084vw;
+        content: "";
+      }
+    }
+    .list {
+      float: right;
+      width: 15vw;
+      height: 100%;
+      background: rgba(184, 227, 255, 0.2);
+      overflow: hidden;
+    }
+    .list-box {
+      width: 288px;
+      transform-origin: top left;
+    }
+    .item {
+      margin: 0 8px;
+      padding: 10px 0 10px 12px;
+      overflow: hidden;
+      border-bottom: 1px solid #485d77;
+      transition: transform 0.6s, opacity 0.6s;
+      will-change: transform, opacity;
+      &.warn {
+        .pic {
+          border-color: #f00;
+        }
+        .name {
+          color: #ff5454;
+        }
+        .time {
+          color: #bb0a4b;
+        }
+      }
+      &.right-list-enter {
+        opacity: 0;
+        transform: translateY(-83px);
+      }
+      &.right-list-leave-to {
+        opacity: 0;
+      }
+      &.right-list-leave-active {
+        position: absolute;
+        left: 0;
+        right: 0;
+      }
+      &.sel {
+        overflow: visible;
+        .bg {
+          position: absolute;
+          top: 0;
+          right: -8px;
+          left: -8px;
+          height: 83px;
+          display: block;
+          background: url(~@/assets/attendanceView/item_bg2.png);
+          z-index: -1;
+        }
+      }
+      .bg {
+        display: none;
+      }
+      .pic {
+        float: left;
+        width: 62px;
+        height: 62px;
+        overflow: hidden;
+        margin-right: 16px;
+        border: 2px #249ce9 solid;
+        border-radius: 100%;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .name {
+        line-height: 32px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 22px;
+        color: #fff;
+      }
+      .time {
+        line-height: 160%;
+        font-weight: bold;
+        font-size: 16px;
+        color: #68a1c5;
+      }
+    }
+  }
+  /* 右侧考勤 E */
+  /* 页脚 S */
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 21.875vw;
+    background: no-repeat top left url(~@/assets/attendanceView/footer_bg.png);
+    width: 1120px;
+    height: 56px;
+    padding-left: 760px;
+    line-height: 56px;
+    text-align: right;
+    font-size: 16px;
+    color: #4886ad;
+    transform-origin: bottom left;
+  }
+  /* 页脚 E */
+}
+
+@keyframes elastic {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
